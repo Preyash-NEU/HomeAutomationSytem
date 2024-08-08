@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="809.0" prefWidth="624.0" style="-fx-background-color: #AED9E0;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainPanelController">
+	<children>
+		<Button layoutX="63.0" layoutY="60.0" mnemonicParsing="false" onAction="#runFactoryDemo" text="Setup Your Smart Home" />
+
+		 <Button layoutX="409.0" layoutY="60.0" mnemonicParsing="false" onAction="#runPrototypeDemo" text="View Smart Device Schedule" />
+		<Button layoutX="290.0" layoutY="468.0" mnemonicParsing="false" onAction="#runObserverAndFacadeDemo" text="Check Temperature" />
+		<TextArea fx:id="outputTextArea" layoutX="49.0" layoutY="574.0" prefHeight="200.0" prefWidth="511.0" />
+		<TextField fx:id="lightColorField" layoutX="58.0" layoutY="276.0" promptText="Light Color" />
+		<TextField fx:id="brightnessField" layoutX="227.0" layoutY="276.0" prefHeight="26.0" prefWidth="126.0" promptText="Brightness" />
+		<TextField fx:id="airPurifierField" layoutX="365.0" layoutY="276.0" prefHeight="26.0" prefWidth="201.0" promptText="Air Purifier (true (ON)/false (OFF))" />
+		<TextField fx:id="blindsLevelField" layoutX="110.0" layoutY="310.0" promptText="Blinds Level" />
+		<TextField fx:id="musicTypeField" layoutX="285.0" layoutY="310.0" promptText="Music Type" />
+		<Button fx:id="energyModeButton" layoutX="294.0" layoutY="181.0" mnemonicParsing="false" onAction="#handleEnergyModeButtonClick" text="Energy Saving Mode" />
+		<Button fx:id="lowPowerModeButton" layoutX="462.0" layoutY="181.0" mnemonicParsing="false" onAction="#handleLowPowerModeButtonClick" text="Low Power Mode" />
+		<Button layoutX="201.0" layoutY="355.0" mnemonicParsing="false" onAction="#handleBedroomButtonClick" text="Bedroom" />
+		<Button layoutX="285.0" layoutY="355.0" mnemonicParsing="false" onAction="#handleLivingRoomButtonClick" text="Living Room" />
+
+		<Button fx:id="acButton" layoutX="251.0" layoutY="120.0" mnemonicParsing="false" text="AC" />
+		<Button fx:id="espressoButton" layoutX="329.0" layoutY="120.0" mnemonicParsing="false" text="Espresso Maker" />
+
+		<Button fx:id="lightButton" layoutX="549.0" layoutY="120.0" onAction="#handleLightButtonClick" text="Light" />
+		<Button fx:id="fanButton" layoutX="483.0" layoutY="120.0" onAction="#handleFanButtonClick" text="Fan" />
+
+		<TextField fx:id="temperatureField" layoutX="273.0" layoutY="433.0" promptText="Enter Room Temperature" />
+
+		<VBox alignment="CENTER" layoutX="19.0" layoutY="419.0" spacing="10">
+			<HBox spacing="10">
+				<Label text="Device Type:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Label>
+				<ChoiceBox fx:id="deviceTypeChoiceBox" />
+			</HBox>
+			<HBox spacing="10">
+				<Button onAction="#handleVolumeUpButtonClick" text="Volume Up" />
+				<Button onAction="#handleVolumeDownButtonClick" text="Volume Down" />
+			</HBox>
+			<Button onAction="#runCompositeDemo" text="Add Device" />
+			<!-- <TextArea fx:id="outputTextArea" prefHeight="200" prefWidth="400" 
+				/> -->
+		</VBox>
+
+		<VBox alignment="CENTER" layoutX="518.0" layoutY="414.0" spacing="10">
+			<Label text="Security Type:">
+            <font>
+               <Font name="System Bold" size="14.0" />
+            </font></Label>
+			<ChoiceBox fx:id="securityChoiceBox" />
+			<Button onAction="#runBridgePatternDemo" text="Add Alert" />
+		</VBox>
+      <Label alignment="CENTER" layoutX="218.0" layoutY="14.0" prefHeight="27.0" prefWidth="201.0" text="Smart Home Remote" textAlignment="JUSTIFY">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="63.0" layoutY="124.0" prefHeight="17.0" prefWidth="160.0" text="Turn On\Off Smart Devices">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="63.0" layoutY="185.0" prefHeight="17.0" prefWidth="149.0" text="Mode">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="254.0" layoutY="238.0" prefHeight="18.0" prefWidth="118.0" text="Room Mood Setup">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="275.0" layoutY="538.0" text="Smart Display">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+
+
+	</children>
+</AnchorPane>
