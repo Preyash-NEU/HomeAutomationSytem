@@ -3,11 +3,12 @@ package edu.neu.csye7374.StatePattern;
 public class StopState implements State {
 
     public void doAction(Device device) {
-        System.out.println(" in stop state");
+        System.out.println("Device is in stop state");
         device.setState(this);
     }
 
-    public String toString(){
-        return " is off";
+    @Override
+    public String toString() {
+        return "Device is off";
     }
 }

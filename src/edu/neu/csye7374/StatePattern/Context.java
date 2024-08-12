@@ -1,31 +1,17 @@
 package edu.neu.csye7374.StatePattern;
 
 public class Context {
-    private State state;
+    private State currentState;
 
-    public Context(){
-        state = null;
+    public Context() {
+        currentState = null;
     }
 
-    public void setState(State state){
-        this.state = state;
+    public void setState(State newState) {
+        this.currentState = newState;
     }
 
-    public State getState(){
-        return state;
+    public State getState() {
+        return currentState;
     }
 }
-
-//    public static void main(String[] args) {
-//        Context context = new Context();
-//
-//        StartState startState = new StartState();
-//        startState.doAction(context);
-//
-//        System.out.println(context.getState().toString());
-//
-//        StopState stopState = new StopState();
-//        stopState.doAction(context);
-//
-//        System.out.println(context.getState().toString());
-//    }

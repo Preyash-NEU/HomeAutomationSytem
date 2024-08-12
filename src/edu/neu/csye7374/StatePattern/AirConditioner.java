@@ -1,19 +1,22 @@
 package edu.neu.csye7374.StatePattern;
 
-public class AirConditioner implements Device{
-    private State state;
+public class AirConditioner implements Device {
+    private State currentState;
 
-    public AirConditioner(){
-        state = new StartState();
+    public AirConditioner() {
+        currentState = new StartState();
     }
 
-    public void setState(State state){
-        this.state = state;
+    public void setState(State newState) {
+        this.currentState = newState;
     }
-    public State getState(){
-        return state;
+
+    public State getState() {
+        return currentState;
     }
+
+    @Override
     public String toString() {
-    	return "AC";
+        return "AC";
     }
 }

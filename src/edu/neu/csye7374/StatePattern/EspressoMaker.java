@@ -1,20 +1,22 @@
 package edu.neu.csye7374.StatePattern;
 
-public class EspressoMaker implements Device{
-    private State state;
+public class EspressoMaker implements Device {
+    private State currentStatus;
 
-    public EspressoMaker(){
-        state = new StartState();
+    public EspressoMaker() {
+        currentStatus = new StartState();
     }
 
-    public void setState(State state) {
-        this.state = state;
+    public void setState(State newState) {
+        this.currentStatus = newState;
     }
-    public State getState(){
-        return state;
+
+    public State getState() {
+        return currentStatus;
     }
-    
+
+    @Override
     public String toString() {
-    	return "Espresso Maker";
+        return "Espresso Maker";
     }
 }
