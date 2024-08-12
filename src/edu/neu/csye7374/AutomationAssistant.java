@@ -125,7 +125,7 @@ public class AutomationAssistant {
         sensor.setTemperature(10);
         sensor.setTemperature(20);
         sensor.setTemperature(30);
-        notification.detach();
+        notification.unsubscribe();
         System.out.println("Ending...".toUpperCase()+"\n");
     }
 
@@ -235,11 +235,11 @@ public class AutomationAssistant {
         smartSpeakers.addDevice(tvSpeaker);
         smartSpeakers.addDevice(mobileSpeaker);
         System.out.println("\tIncreasing Volume in Group Smart Speakers Devices:".toUpperCase());
-        smartSpeakers.volumeUp();
+        smartSpeakers.adjustVolumeUp();
         System.out.println("\tRemoving Bedroom Speaker Smart Speaker Device:".toUpperCase());
         smartSpeakers.removeDevice(bedroomSpeaker);
         System.out.println("\tDecreasing Volume in Latest Group Smart Speaker Devices:".toUpperCase());
-        smartSpeakers.volumeDown();
+        smartSpeakers.adjustVolumeDown();
         System.out.println("Ending...".toUpperCase() + "\n");
     }
 
