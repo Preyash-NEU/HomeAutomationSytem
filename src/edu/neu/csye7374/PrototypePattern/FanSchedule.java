@@ -4,8 +4,8 @@ import java.util.List;
 
 public class FanSchedule extends Schedule {
 
-    public FanSchedule(String roomName, List<String> schedule) {
-        super(roomName, schedule, "Fan");
+    public FanSchedule(String locationName, List<String> timeSlots) {
+        super(locationName, timeSlots, "Fan");
     }
 
     @Override
