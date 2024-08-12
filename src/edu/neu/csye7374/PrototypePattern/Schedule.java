@@ -4,58 +4,52 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public abstract class Schedule implements Cloneable{
+public abstract class Schedule implements Cloneable {
 
-    private String roomName;
+    private String locationName;
+    private String deviceType;
+    private List<String> timeSlots;
 
-    private String type;
-    private List<String> schedule;
-
-    public Schedule(String roomName, List<String> schedule, String type) {
-        this.roomName = roomName;
-        this.schedule = schedule;
-        this.type = type;
+    public Schedule(String locationName, List<String> timeSlots, String deviceType) {
+        this.locationName = locationName;
+        this.timeSlots = timeSlots;
+        this.deviceType = deviceType;
     }
 
     public String getRoomName() {
-        return roomName;
+        return locationName;
     }
 
     public String getType() {
-        return type;
+        return deviceType;
     }
 
     public List<String> getSchedule() {
-        return schedule;
+        return timeSlots;
     }
 
     public void addSchedule(String time) {
-        schedule.add(time);
-        Collections.sort(schedule);
+        timeSlots.add(time);
+        Collections.sort(timeSlots);
     }
 
     @Override
     protected Schedule clone() {
-
         Schedule cloned = null;
-
         try {
             cloned = (Schedule) super.clone();
-            cloned.schedule = new ArrayList<>(this.schedule);
-        }
-        catch (CloneNotSupportedException e) {
+            cloned.timeSlots = new ArrayList<>(this.timeSlots);
+        } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
-
         return cloned;
     }
 
     @Override
     public String toString() {
         return "Schedule{" +
-//                "Type of Device='" + this.getClass() + '\'' +
-                "roomName='" + roomName + '\'' +
-                ", schedule=" + schedule +
+                "locationName='" + locationName + '\'' +
+                ", timeSlots=" + timeSlots +
                 '}';
     }
 }

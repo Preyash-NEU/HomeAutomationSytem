@@ -4,8 +4,8 @@ import java.util.List;
 
 public class LightSchedule extends Schedule {
 
-    public LightSchedule(String roomName, List<String> schedule) {
-        super(roomName, schedule, "Light");
+    public LightSchedule(String areaName, List<String> timeSlots) {
+        super(areaName, timeSlots, "Light");
     }
 
     @Override

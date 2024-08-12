@@ -7,20 +7,20 @@ import java.util.List;
 
 public class ScheduleCache {
 
-    private static Hashtable<String, Schedule> scheduleHashtable = new Hashtable<>();
+    private static Hashtable<String, Schedule> scheduleTable = new Hashtable<>();
 
-    public static Schedule getSchedule(String roomName) {
-        Schedule cachedSchedule = scheduleHashtable.get(roomName);
+    public static Schedule getSchedule(String locationName) {
+        Schedule cachedSchedule = scheduleTable.get(locationName);
         return (Schedule) cachedSchedule.clone();
     }
 
     public static void loadCache() {
 
-        Schedule lightSchedule = new LightSchedule("Living Room", new ArrayList<String>(Arrays.asList("10:30AM", "5:30PM")));
-        scheduleHashtable.put(lightSchedule.getRoomName(), lightSchedule);
+        Schedule lightSchedule = new LightSchedule("Living Room", new ArrayList<>(Arrays.asList("9:30AM", "4:30PM")));
+        scheduleTable.put(lightSchedule.getRoomName(), lightSchedule);
 
-        Schedule fanSchedule = new FanSchedule("Bedroom", new ArrayList<String>(Arrays.asList("12:30AM", "2:30PM")));
-        scheduleHashtable.put(fanSchedule.getRoomName(), fanSchedule);
+        Schedule fanSchedule = new FanSchedule("Bedroom", new ArrayList<>(Arrays.asList("12:00AM", "1:30PM")));
+        scheduleTable.put(fanSchedule.getRoomName(), fanSchedule);
 
     }
 }
