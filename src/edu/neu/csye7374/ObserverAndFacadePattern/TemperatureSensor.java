@@ -2,7 +2,6 @@ package edu.neu.csye7374.ObserverAndFacadePattern;
 import java.util.ArrayList;
 import java.util.List;
 
-// The TemperatureSensor class represents the subject being observed
 public class TemperatureSensor {
     private int temperature;
     private List<TemperatureObserver> observers = new ArrayList<>();

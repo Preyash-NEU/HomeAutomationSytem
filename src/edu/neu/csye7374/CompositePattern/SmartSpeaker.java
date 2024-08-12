@@ -7,84 +7,79 @@ import java.util.List;
 
 public class SmartSpeaker implements SmartDevice {
 
-    private String name;
-    int volume = 10;
-    private List<SmartSpeakerDevices> devices;
-    boolean on;
+	private String speakerName;
+    private int soundLevel = 10;
+    private List<SmartSpeakerDevices> connectedDevices;
+    private boolean isActive;
 
     public SmartSpeaker(String name) {
-        this.name = name;
-        devices = new ArrayList<>();
+        this.speakerName = name;
+        connectedDevices = new ArrayList<>();
     }
 
     @Override
     public String getObjectInfo() {
-        StringBuilder output = new StringBuilder();
-        output.append("SmartSpeaker name: ").append(name).append("\nList of Devices:\n");
-
-        for (SmartDevice device : devices) {
-            output.append(device.getObjectInfo()).append("\n");
+        StringBuilder infoBuilder = new StringBuilder();
+        infoBuilder.append("System Name: ").append(speakerName).append("\nConnected Devices:\n");
+        for (SmartSpeakerDevices device : connectedDevices) {
+            infoBuilder.append(device.getObjectInfo()).append("\n");
         }
-
-        return output.toString();
+        return infoBuilder.toString();
     }
-
 
     @Override
     public String turnOn() {
-    	String output = "name + \" turned on\"";
-        System.out.println(name + " turned on");
-        for (SmartDevice device : devices) {
-            output = device.turnOn() + "\n";
+        String status = speakerName + " is now active";
+        System.out.println(status);
+        for (SmartSpeakerDevices device : connectedDevices) {
+            status += "\n" + device.turnOn();
         }
-        on = true;
-        return output;
+        isActive = true;
+        return status;
     }
 
     @Override
     public String turnOff() {
-    	String output = "name + \" turned off\"";
-        System.out.println(name + " turned off");
-        for (SmartSpeakerDevices device : devices) {
-            output = device.turnOff() + "\n";
+        String status = speakerName + " has been deactivated";
+        System.out.println(status);
+        for (SmartSpeakerDevices device : connectedDevices) {
+            status += "\n" + device.turnOff();
         }
-        on = false;
-        return output;
+        isActive = false;
+        return status;
     }
 
     public String addDevice(SmartSpeakerDevices device) {
-        devices.add(device);
-        return device.getObjectInfo();
+        connectedDevices.add(device);
+        return "Added: " + device.getObjectInfo();
     }
 
     public String removeDevice(SmartSpeakerDevices device) {
-        System.out.println("\tRemoving:");
-//        device.getObjectInfo();
-        devices.remove(device);
-        return "\tRemoving:" + device.getObjectInfo();
-    }
-
-    public String volumeUp() {
-        StringBuilder output = new StringBuilder();
-        for (SmartSpeakerDevices device : devices) {
-            output.append(device.getObjectInfo()).append("\n").append(device.volumeUp(volume)).append("\n");
+        if (connectedDevices.remove(device)) {
+            System.out.println("\tRemoved Device Info:");
+            return "\tRemoved: " + device.getObjectInfo();
         }
-        return output.toString();
+        return "\tError: Device not found";
     }
 
-    public String volumeDown() {
-        StringBuilder output = new StringBuilder();
-        for (SmartSpeakerDevices device : devices) {
-            output.append(device.getObjectInfo()).append("\n").append(device.volumeDown(volume)).append("\n");
+    public String adjustVolumeUp() {
+        StringBuilder result = new StringBuilder("Increasing volume:");
+        for (SmartSpeakerDevices device : connectedDevices) {
+            result.append("\n").append(device.getObjectInfo()).append("\n").append(device.volumeUp(soundLevel));
         }
-        return output.toString();
+        return result.toString();
     }
 
-	@Override
-	public boolean isOn() {
-		// TODO Auto-generated method stub
-		return on;
-	}
+    public String adjustVolumeDown() {
+        StringBuilder result = new StringBuilder("Decreasing volume:");
+        for (SmartSpeakerDevices device : connectedDevices) {
+            result.append("\n").append(device.getObjectInfo()).append("\n").append(device.volumeDown(soundLevel));
+        }
+        return result.toString();
+    }
 
-
+    @Override
+    public boolean isOn() {
+        return isActive;
+    }
 }

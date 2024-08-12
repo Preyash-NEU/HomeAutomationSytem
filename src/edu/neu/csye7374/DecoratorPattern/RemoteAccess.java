@@ -2,23 +2,23 @@ package edu.neu.csye7374.DecoratorPattern;
 
 public class RemoteAccess implements SmartHomeFeatures {
 
-    public static final String DESCRIPTION = "Remote Access, ";
+	public static final String FEATURE_DESCRIPTION = "Remote Control Enabled, ";
 
-    private final SmartHomeFeatures smartHomeFeatures;
+    private final SmartHomeFeatures baseFeature;
 
-    public RemoteAccess(SmartHomeFeatures smartHomeFeatures) {
-        this.smartHomeFeatures = smartHomeFeatures;
+    public RemoteAccess(SmartHomeFeatures baseFeature) {
+        this.baseFeature = baseFeature;
     }
 
     @Override
     public String getDescription() {
-        return smartHomeFeatures.getDescription() + " " + DESCRIPTION;
+        return baseFeature.getDescription() + " " + FEATURE_DESCRIPTION;
     }
 
     @Override
     public String toString() {
-        return "RemoteAccess{" +
-                "smartHomeFeatures=" + smartHomeFeatures +
+        return "RemoteControlFeature{" +
+                "baseFeature=" + baseFeature +
                 '}';
     }
 }

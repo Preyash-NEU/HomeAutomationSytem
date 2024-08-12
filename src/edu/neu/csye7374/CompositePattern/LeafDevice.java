@@ -2,38 +2,39 @@ package edu.neu.csye7374.CompositePattern;
 
 public class LeafDevice extends SmartSpeakerDevices {
 
-    int volume = 10;
-
-    private String name;
-    boolean on;
+	private int soundLevel = 10; 
+    private String deviceName;    
+    private boolean isActive; 
 
     public LeafDevice(String name) {
-        this.name = name;
+        this.deviceName = name;
     }
 
     @Override
     public String getObjectInfo() {
-        System.out.println("\t\tDevice name: "+name+", Volume: "+volume);
-        return "\t\tDevice name: "+name+", Volume: "+volume;
+        String info = "\t\tDevice: " + deviceName + ", Sound Level: " + soundLevel;
+        System.out.println(info);
+        return info;
     }
 
     @Override
     public String turnOn() {
-        System.out.println(name + " turned on");
-        on = true;
-        return name + " turned on";
+        isActive = true;
+        String status = deviceName + " is now active";
+        System.out.println(status);
+        return status;
     }
 
     @Override
     public String turnOff() {
-        System.out.println(name + " turned off");
-        on = false;
-        return name + " turned off";
+        isActive = false;
+        String status = deviceName + " has been deactivated";
+        System.out.println(status);
+        return status;
     }
 
-	@Override
-	public boolean isOn() {
-		// TODO Auto-generated method stub
-		return on;
-	}
+    @Override
+    public boolean isOn() {
+        return isActive;
+    }
 }
