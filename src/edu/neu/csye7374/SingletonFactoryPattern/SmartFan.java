@@ -5,26 +5,26 @@ import edu.neu.csye7374.DecoratorPattern.SmartHomeFeatures;
 public class SmartFan implements SmartDevice, SmartHomeFeatures {
 
     public static final String DESCRIPTION = "SMART FAN FEATURES : ";
-    private boolean on;
+    private boolean isActive;
 
     @Override
     public String getObjectInfo() {
-        System.out.println("\tCreated Smart Fan using getObject()");
-        return "\tCreated Smart Fan using getObject()";
+        System.out.println("\tInstance of Smart Fan created using getObject()");
+        return "\tInstance of Smart Fan created using getObject()";
     }
 
     @Override
     public String turnOn() {
-        System.out.println("Smart Fan turned on");
-        on = true;
-        return "Smart Fan turned on";
+        System.out.println("Activating Smart Fan");
+        isActive = true;
+        return "Activating Smart Fan";
     }
 
     @Override
     public String turnOff() {
-        System.out.println("Smart Fan turned off");
-        on = false;
-        return "Smart Fan turned off";
+        System.out.println("Deactivating Smart Fan");
+        isActive = false;
+        return "Deactivating Smart Fan";
     }
 
     @Override
@@ -35,7 +35,6 @@ public class SmartFan implements SmartDevice, SmartHomeFeatures {
 
 	@Override
 	public boolean isOn() {
-		// TODO Auto-generated method stub
-		return on;
+		return isActive;
 	}
 }

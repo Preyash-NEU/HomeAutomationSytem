@@ -5,25 +5,26 @@ import edu.neu.csye7374.DecoratorPattern.SmartHomeFeatures;
 public class SmartLight implements SmartDevice, SmartHomeFeatures {
 
     public static final String DESCRIPTION = "SMART LIGHT FEATURES : ";
-    private boolean on;
+    private boolean isActive;
+
     @Override
     public String getObjectInfo() {
-        System.out.println("\tCreated Smart Light using getObject()");
-        return "\tCreated Smart Light using getObject()";
+        System.out.println("\tInstance of Smart Light created using getObject()");
+        return "\tInstance of Smart Light created using getObject()";
     }
 
     @Override
     public String turnOn() {
-        System.out.println("Smart light turned on");
-        this.on = true;
-        return "Smart light turned on";
+        System.out.println("Activating Smart Light");
+        this.isActive = true;
+        return "Activating Smart Light";
     }
 
     @Override
     public String turnOff() {
-        System.out.println("Smart light turned off");
-        this.on = false;
-        return "Smart light turned off";
+        System.out.println("Deactivating Smart Light");
+        this.isActive = false;
+        return "Deactivating Smart Light";
     }
 
     @Override
@@ -34,6 +35,6 @@ public class SmartLight implements SmartDevice, SmartHomeFeatures {
 
 	@Override
 	public boolean isOn() {
-		return on;
+		return isActive;
 	}
 }
