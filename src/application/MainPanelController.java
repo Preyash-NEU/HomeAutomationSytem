@@ -375,7 +375,7 @@ public class MainPanelController {
 		// Set the temperature and get the notification
 		output.append(sensor.setTemperature(temperature)).append("\n");
 
-		notification.detach();
+		notification.unsubscribe();
 
 		output.append("Ending...\n".toUpperCase()).append("\n");
 
@@ -465,14 +465,14 @@ public class MainPanelController {
 	public void handleVolumeUpButtonClick() {
 		// Handle volume up button click
 		outputTextArea.appendText("Increasing volume...\n");
-		outputTextArea.appendText(smartSpeakers.volumeUp() + "\n"); // Increase volume
+		outputTextArea.appendText(smartSpeakers.adjustVolumeUp() + "\n"); // Increase volume
 	}
 
 	@FXML
 	public void handleVolumeDownButtonClick() {
 		// Handle volume down button click
 		outputTextArea.appendText("Decreasing volume...\n");
-		outputTextArea.appendText(smartSpeakers.volumeDown() + "\n"); // Decrease volume
+		outputTextArea.appendText(smartSpeakers.adjustVolumeDown() + "\n"); // Decrease volume
 	}
 
 	@FXML
