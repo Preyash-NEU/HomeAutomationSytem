@@ -71,16 +71,11 @@ public class MainPanelController {
 	@FXML
 	private ChoiceBox<String> deviceTypeChoiceBox;
 
-	private SmartSpeaker smartSpeakers; // Declare SmartSpeaker object
+	private SmartSpeaker smartSpeakers; 
 
 	@FXML
 	private ChoiceBox<String> securityChoiceBox;
 
-//	@FXML
-//	private TextField fanScheduleTextField;
-//
-//	@FXML
-//	private TextField lightScheduleTextField;
 
 	AirConditioner ac;
 	EspressoMaker em;
@@ -92,7 +87,6 @@ public class MainPanelController {
 
 	@FXML
 	public void initialize() {
-		// Initially disable all buttons except the start buttons
 		if (ac == null) {
 			ac = new AirConditioner();
 		}
@@ -106,10 +100,8 @@ public class MainPanelController {
 			handleDeviceButton(em);
 		});
 
-		lightButton.setStyle("-fx-background-color: red");
-
-		// Initialize the fan button
-		fanButton.setStyle("-fx-background-color: red");
+		lightButton.setStyle("-fx-background-color: green");
+		fanButton.setStyle("-fx-background-color: green");
 
 		deviceTypeChoiceBox.setItems(FXCollections.observableArrayList("Bedroom Speaker", "Master Room Speaker", "TV Speaker", "Mobile Speaker"));
 		smartSpeakers = new SmartSpeaker("Smart Speaker");
@@ -130,15 +122,9 @@ public class MainPanelController {
 		SmartDeviceFactory fanFactory = SmartFanEagerSingletonFactory.getInstance();
 		SmartDevice fan = fanFactory.getObject();
 		output.append(fan.getObjectInfo()).append("\n");
-
 		output.append("Ending...\n".toUpperCase()).append("\n");
-
-//		outputTextArea.setText(output.toString());
-		
-//		StringBuilder output = new StringBuilder();
 		output.append("***** DECORATOR AND SINGLETON DESIGN PATTERN DEMO *****\n");
 		output.append("\nStarting...\n".toUpperCase());
-
 		SmartHomeFeatures smartLight = new RemoteAccess(new VoiceControl(new SmartLight()));
 		output.append(smartLight.getDescription()).append("\n");
 
@@ -155,22 +141,18 @@ public class MainPanelController {
 		output.append("********** STRATEGY DESIGN PATTERN DEMO **********\n");
 		output.append("\nStarting...\n".toUpperCase());
 
-		// Instantiate strategy objects and capture constructor messages
 		LowPowerStrategy lowPowerStrategy = new LowPowerStrategy();
 		EnergySavingStrategy energySavingStrategy = new EnergySavingStrategy();
 
 		SmartDeviceStrategyContext context = new SmartDeviceStrategyContext();
-
-		// Check which button is clicked and set the strategy accordingly
 		if (energyModeButtonClicked) {
 			context.setStrategyAPI(energySavingStrategy);
-			output.append("\t Setting Energy Saving Strategy Mode to Smart Device").append("\n");
+			output.append("\t Setting Energy Saving Strategy to Smart Device").append("\n");
 		} else if (lowPowerModeButtonClicked) {
 			context.setStrategyAPI(lowPowerStrategy);
-			output.append("\t Setting Low Power Strategy Mode to Smart Device").append("\n");
+			output.append("\t Setting Low Power Strategy to Smart Device").append("\n");
 		}
 
-		// Execute the selected strategy
 		output.append(context.executeStrategy()).append("\n");
 
 		output.append("Ending...\n".toUpperCase()).append("\n");
@@ -199,14 +181,12 @@ public class MainPanelController {
 		output.append("********** BUILDER AND ADAPTER DESIGN PATTERN DEMO **********\n");
 		output.append("\nStarting...\n".toUpperCase());
 
-		// Retrieve environment settings from input fields
 		String lightColor = lightColorField.getText();
 		int brightness = Integer.parseInt(brightnessField.getText());
 		boolean airPurifier = Boolean.parseBoolean(airPurifierField.getText());
 		int blindsLevel = Integer.parseInt(blindsLevelField.getText());
 		String musicType = musicTypeField.getText();
 
-		// Implement builder and adapter demo for bedroom
 		Environment environment = new Environment.Builder().lightColor(lightColor).lightBrightness(brightness)
 				.airPurifier(airPurifier).blindsLevel(blindsLevel).musicType(musicType).build();
 
@@ -230,20 +210,16 @@ public class MainPanelController {
 		output.append("********** BUILDER AND ADAPTER DESIGN PATTERN DEMO **********\n");
 		output.append("\nStarting...\n".toUpperCase());
 
-		// Retrieve environment settings from input fields
 		String lightColor = lightColorField.getText();
 		int brightness = Integer.parseInt(brightnessField.getText());
 		boolean airPurifier = Boolean.parseBoolean(airPurifierField.getText());
 		int blindsLevel = Integer.parseInt(blindsLevelField.getText());
 		String musicType = musicTypeField.getText();
 
-		// Implement builder and adapter demo for living room
 		Environment environment = new Environment.Builder().lightColor(lightColor).lightBrightness(brightness)
 				.airPurifier(airPurifier).blindsLevel(blindsLevel).musicType(musicType).build();
 
 		Room livingRoom = EnvironmentAdapter.adapt(environment, "living room");
-
-		// Display environment details
 		output.append("Environment in Living Room : \n Light Colour is " + livingRoom.getEnvironment().getLightColor()
 				+ "\n Light brightness level is " + livingRoom.getEnvironment().getLightBrightness()
 				+ "\n Air Purifier level is " + (livingRoom.getEnvironment().getAirPurifier() ? "ON" : "OFF")
@@ -256,11 +232,8 @@ public class MainPanelController {
 	}
 
 	private void handleDeviceButton(Device device) {
-//    	State currentState = new StopState(); // Set default state to StopState
 		State currentState = device.getState();
 		State nextState;
-
-//        if (currentState == null) nextState = new StartState();
 
 		System.out.print(currentState instanceof StartState);
 		if (currentState instanceof StartState) {
@@ -329,37 +302,6 @@ public class MainPanelController {
 		outputTextArea.setText(output.toString());
 	}
 
-//	@FXML
-//	public void runPrototypeDemo() {
-//		StringBuilder output = new StringBuilder();
-//		output.append("********** PROTOTYPE DESIGN PATTERN DEMO **********\n");
-//		output.append("\nStarting...\n".toUpperCase());
-//
-//		// Get fan schedule and update living room
-//		String fanSchedule = fanScheduleTextField.getText();
-//		Schedule fanScheduleLivingRoom = ScheduleCache.getSchedule("Living Room");
-//		fanScheduleLivingRoom.addSchedule(fanSchedule);
-//
-//		output.append("Fan Schedule for Living Room after update:\n");
-//		output.append("Type of Device = ").append(fanScheduleLivingRoom.getType()).append("\n");
-//		output.append("Room Name = ").append(fanScheduleLivingRoom.getRoomName()).append("\n");
-//		output.append("Schedule = ").append(fanScheduleLivingRoom.getSchedule()).append("\n\n");
-//
-//		// Get light schedule and update bedroom
-//		String lightSchedule = lightScheduleTextField.getText();
-//		Schedule lightScheduleBedroom = ScheduleCache.getSchedule("Bedroom");
-//		lightScheduleBedroom.addSchedule(lightSchedule);
-//
-//		output.append("Light Schedule for Bedroom after update:\n");
-//		output.append("Type of Device = ").append(lightScheduleBedroom.getType()).append("\n");
-//		output.append("Room Name = ").append(lightScheduleBedroom.getRoomName()).append("\n");
-//		output.append("Schedule = ").append(lightScheduleBedroom.getSchedule()).append("\n\n");
-//
-//		output.append("Ending...\n".toUpperCase()).append("\n");
-//
-//		outputTextArea.setText(output.toString());
-//	}
-
 	@FXML
 	public void runObserverAndFacadeDemo() {
 		StringBuilder output = new StringBuilder();
@@ -369,17 +311,14 @@ public class MainPanelController {
 		TemperatureSensor sensor = new TemperatureSensor();
 		TemperatureNotification notification = new TemperatureNotification(sensor);
 
-		// Get temperature from text field
 		int temperature = Integer.parseInt(temperatureField.getText());
 
-		// Set the temperature and get the notification
 		output.append(sensor.setTemperature(temperature)).append("\n");
 
 		notification.detach();
 
 		output.append("Ending...\n".toUpperCase()).append("\n");
 
-		// Display the output in the TextArea
 		outputTextArea.setText(output.toString());
 	}
 
@@ -436,8 +375,7 @@ public class MainPanelController {
 			return;
 		}
 
-//        SmartSpeaker smartSpeakers = new SmartSpeaker("Smart Speaker");
-		output.append("\tAdding Leaf Speakers to Group Smart Speakers Devices:\n".toUpperCase());
+		output.append("\tAdding Single Speakers to Group Smart Speakers Devices:\n".toUpperCase());
 		output.append(smartSpeakers.addDevice(selectedSpeakerDevice)).append("\n");
 		output.append(smartSpeakers.getObjectInfo()).append("\n");
 
@@ -463,14 +401,12 @@ public class MainPanelController {
 
 	@FXML
 	public void handleVolumeUpButtonClick() {
-		// Handle volume up button click
 		outputTextArea.appendText("Increasing volume...\n");
 		outputTextArea.appendText(smartSpeakers.volumeUp() + "\n"); // Increase volume
 	}
 
 	@FXML
 	public void handleVolumeDownButtonClick() {
-		// Handle volume down button click
 		outputTextArea.appendText("Decreasing volume...\n");
 		outputTextArea.appendText(smartSpeakers.volumeDown() + "\n"); // Decrease volume
 	}
@@ -482,10 +418,8 @@ public class MainPanelController {
 		output.append("\nStarting...\n".toUpperCase());
 		output.append("\tSECURITY BASED ON PERSON ROLE:\n");
 
-		// Get the selected SecurityAPI from the choice box
 		String selectedSecurity = securityChoiceBox.getValue();
 
-		// Create the corresponding SecurityAPI based on the selected value
 		SecurityAPI securityAPI;
 		switch (selectedSecurity) {
 		case "Stranger":
@@ -502,13 +436,10 @@ public class MainPanelController {
 			break;
 		}
 
-		// Check if securityAPI is not null
 		if (securityAPI != null) {
 			output.append("\t").append(selectedSecurity.toUpperCase()).append(":\n");
 			output.append(securityAPI.alarmSecurity()).append("\n");
 
-			// Check if the selected security is Guest or Family and append additional
-			// security details
 			if (selectedSecurity.equals("Guest") || selectedSecurity.equals("Family")) {
 				RoomActivateAPI roomActivateAPI = (RoomActivateAPI) securityAPI;
 				output.append(roomActivateAPI.doorSecurity()).append("\n");

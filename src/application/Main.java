@@ -17,9 +17,6 @@ public class Main extends Application {
 	        primaryStage.setTitle("Design Patterns Demo");
 	        primaryStage.setScene(new Scene(root, 624, 809));
 	        primaryStage.show();
-//			System.out.println("******Design Patterns project for Home Automation******\n\n");
-//	        AutomationAssistant.demo();
-//	        System.out.println("******Thank You******");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
