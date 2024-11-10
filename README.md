@@ -3,11 +3,6 @@
 
 This project is a comprehensive Home Automation System that integrates multiple design patterns to provide a robust, scalable, and modular architecture. The system manages smart devices such as lights, air conditioners, and security features, enabling different user roles to interact seamlessly with these devices.
 
-## Team Members
-- **Anuja Kale** - 002700699
-- **Kshetra Hegde** - 002728959
-- **Preyash Amar Mehta** - 002291343
-- **Xiaoyang Chen** - 002683914
 
 ## Design Patterns Implemented
 
